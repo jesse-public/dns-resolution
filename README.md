@@ -37,3 +37,16 @@ services:
     restart: unless-stopped
 ```
     
+## Example `.env`
+
+```
+HOSTNAME=dns-resolver
+DOMAINNAME=dns-resolver.local
+SERVERIP=192.168.0.2
+TZ=America/Los_Angeles
+WEBPASSWORD=supersecretpasswordgoeshere!
+REV_SERVER=false
+REV_SERVER_TARGET=
+REV_SERVER_DOMAIN=
+REV_SERVER_CIDR=
+```
