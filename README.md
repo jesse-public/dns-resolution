@@ -25,12 +25,9 @@ services:
       ServerIP: ${SERVERIP}
       TZ: ${TZ}
       WEBPASSWORD: ${WEBPASSWORD}
-      REV_SERVER: ${REV_SERVER}
-      REV_SERVER_TARGET: ${REV_SERVER_TARGET}
-      REV_SERVER_DOMAIN: ${REV_SERVER_DOMAIN}
-      REV_SERVER_CIDR: ${REV_SERVER_CIDR}
+      WEBTHEME: "default-dark"
       PIHOLE_DNS_: 127.0.0.1#5335;127.0.0.1#5335
-      DNSSEC: "true"
+      DNSSEC: "false" # unbound will perform DNSSEC
     volumes:
       - pihole:/etc/pihole:rw
       - dnsmasq:/etc/dnsmasq.d:rw
@@ -45,8 +42,4 @@ DOMAINNAME=dns-resolver.local
 SERVERIP=192.168.0.2
 TZ=America/Los_Angeles
 WEBPASSWORD=supersecretpasswordgoeshere!
-REV_SERVER=false
-REV_SERVER_TARGET=
-REV_SERVER_DOMAIN=
-REV_SERVER_CIDR=
 ```
