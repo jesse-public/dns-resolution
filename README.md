@@ -35,5 +35,5 @@ services:
       - pihole:/etc/pihole:rw
       - dnsmasq:/etc/dnsmasq.d:rw
     restart: unless-stopped
-    ```
+```
     
