@@ -12,6 +12,10 @@ volumes:
 
 services:
   dns:
+    ulimits:
+      nofile:
+        soft: 1024
+        hard: 4096
     container_name: dns-resolver
     image: dns-resolver
     hostname: ${HOSTNAME}
@@ -31,6 +35,7 @@ services:
     volumes:
       - pihole:/etc/pihole:rw
       - dnsmasq:/etc/dnsmasq.d:rw
+      - $HOME/docker/projects/dns-resolver/volumes/pihole-certs:/etc/pihole-certs
     restart: unless-stopped
 ```
     
