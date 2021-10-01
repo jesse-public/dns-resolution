@@ -1,4 +1,4 @@
-# dns-resolver
+# dns-resolution
 PiHole + Unbound DNS in Docker
 
 ## Example `docker-compose.yml`
@@ -16,13 +16,12 @@ services:
       nofile:
         soft: 1024
         hard: 4096
-    container_name: dns-resolver
-    image: dns-resolver
+    container_name: dns-resolution
+    image: dns-resolution
     hostname: ${HOSTNAME}
     domainname: ${DOMAINNAME}
     ports:
-      - 443:443/tcp
-      - 80:80/tcp
+      - 4000:4000/tcp
       - 53:53/tcp
       - 53:53/udp
     environment:
@@ -35,15 +34,15 @@ services:
     volumes:
       - pihole:/etc/pihole:rw
       - dnsmasq:/etc/dnsmasq.d:rw
-      - $HOME/docker/projects/dns-resolver/volumes/pihole-certs:/etc/pihole-certs
+      - $HOME/docker/projects/dns-resolution/volumes/pihole-certs:/etc/pihole-certs
     restart: unless-stopped
 ```
     
 ## Example `.env`
 
 ```
-HOSTNAME=dns-resolver
-DOMAINNAME=dns-resolver.local
+HOSTNAME=dns-resolution
+DOMAINNAME=local
 SERVERIP=192.168.0.2
 TZ=America/Los_Angeles
 WEBPASSWORD=supersecretpasswordgoeshere!
