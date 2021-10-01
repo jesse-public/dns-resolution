@@ -34,7 +34,7 @@ services:
     volumes:
       - pihole:/etc/pihole:rw
       - dnsmasq:/etc/dnsmasq.d:rw
-      - $HOME/docker/projects/dns-resolution/volumes/pihole-certs:/etc/pihole-certs
+      - ./volumes/pihole-certs:/etc/pihole-certs
     restart: unless-stopped
 ```
     
