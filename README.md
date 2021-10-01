@@ -21,7 +21,7 @@ services:
     hostname: ${HOSTNAME}
     domainname: ${DOMAINNAME}
     ports:
-      - 443:443/tcp
+      - 8000:443/tcp
       - 53:53/tcp
       - 53:53/udp
     environment:
@@ -42,7 +42,7 @@ services:
 
 ```
 HOSTNAME=dns-resolution
-DOMAINNAME=local
+DOMAINNAME=home
 SERVERIP=192.168.0.2
 TZ=America/Los_Angeles
 WEBPASSWORD=supersecretpasswordgoeshere!
