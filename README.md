@@ -21,7 +21,7 @@ services:
     hostname: ${HOSTNAME}
     domainname: ${DOMAINNAME}
     ports:
-      - 4000:4000/tcp
+      - 443:443/tcp
       - 53:53/tcp
       - 53:53/udp
     environment:
