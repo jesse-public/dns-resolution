@@ -37,7 +37,7 @@ services:
       - ./volumes/pihole-certs:/etc/pihole-certs
     restart: unless-stopped
 ```
-    
+
 ## Example `.env`
 
 ```
