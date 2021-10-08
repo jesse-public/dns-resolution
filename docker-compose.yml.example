@@ -16,8 +16,10 @@ services:
     domainname: ${DOMAINNAME}
     ports:
       - 8000:443/tcp
-      - 53:53/tcp
-      - 53:53/udp
+      # Specify host IP to enable DNS in other containers
+      # See https://discourse.pi-hole.net/t/31413
+      - ${SERVERIP}53:53/tcp
+      - ${SERVERIP}53:53/udp
     environment:
       ServerIP: ${SERVERIP}
       TZ: ${TZ}

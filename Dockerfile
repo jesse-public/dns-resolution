@@ -7,7 +7,6 @@ COPY ./start_unbound_and_s6_init.sh start_unbound_and_s6_init.sh
 
 RUN mkdir -p /var/log/unbound \
   && touch /var/log/unbound/unbound.log
-  # && chown unbound /var/log/unbound/unbound.log
 
 RUN chmod +x start_unbound_and_s6_init.sh
 ENTRYPOINT ./start_unbound_and_s6_init.sh
