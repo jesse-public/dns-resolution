@@ -23,6 +23,7 @@ services:
     environment:
       ServerIP: ${SERVERIP}
       TZ: ${TZ}
+      VIRTUAL_HOST: ${HOSTNAME}.${DOMAINNAME}
       WEBPASSWORD: ${WEBPASSWORD}
       WEBTHEME: "default-dark"
       PIHOLE_DNS_: 127.0.0.1#5335;127.0.0.1#5335
