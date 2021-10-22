@@ -4,6 +4,12 @@ volumes:
   pihole:
   dnsmasq:
 
+networks:
+  frontend:
+    driver: bridge
+  reverse-proxy-backend:
+    external: true
+
 services:
   dns:
     ulimits:
@@ -12,10 +18,13 @@ services:
         hard: 4096
     container_name: dns-resolution
     image: dns-resolution
+    networks:
+      - frontend
+      - reverse-proxy-backend
     hostname: ${HOSTNAME}
     domainname: ${DOMAINNAME}
     ports:
-      - 8000:443/tcp
+      #- 8000:443/tcp
       # Specify host IP to enable DNS in other containers
       # See https://discourse.pi-hole.net/t/31413
       - ${SERVERIP}53:53/tcp
