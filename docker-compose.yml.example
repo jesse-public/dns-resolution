@@ -1,9 +1,5 @@
 version: "3"
 
-volumes:
-  pihole:
-  dnsmasq:
-
 networks:
   frontend:
     driver: bridge
@@ -38,7 +34,7 @@ services:
       PIHOLE_DNS_: 127.0.0.1#5335;127.0.0.1#5335
       DNSSEC: "false" # unbound will perform DNSSEC
     volumes:
-      - pihole:/etc/pihole:rw
-      - dnsmasq:/etc/dnsmasq.d:rw
-      - ./volumes/pihole-certs:/etc/pihole-certs
+      - './volumes/pihole:/etc/pihole'
+      - './volumes/dnsmasq:/etc/dnsmasq.d'
+      - './volumes/certs:/etc/pihole-certs'
     restart: unless-stopped
