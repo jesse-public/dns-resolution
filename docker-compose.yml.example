@@ -17,21 +17,20 @@ services:
     networks:
       - frontend
       - reverse-proxy-backend
-    hostname: ${HOSTNAME}
-    domainname: ${DOMAINNAME}
     ports:
-      #- 8000:443/tcp
+      #- ${SERVERIP}:8000:443/tcp
       # Specify host IP to enable DNS in other containers
       # See https://discourse.pi-hole.net/t/31413
-      - ${SERVERIP}53:53/tcp
-      - ${SERVERIP}53:53/udp
+      - ${SERVERIP}:53:53/tcp
+      - ${SERVERIP}:53:53/udp
     environment:
+      FTLCONF_REPLY_ADDR4: ${SERVERIP}
       ServerIP: ${SERVERIP}
       TZ: ${TZ}
       VIRTUAL_HOST: ${HOSTNAME}.${DOMAINNAME}
       WEBPASSWORD: ${WEBPASSWORD}
       WEBTHEME: "default-dark"
-      PIHOLE_DNS_: 127.0.0.1#5335;127.0.0.1#5335
+      PIHOLE_DNS_: "127.0.0.1#5335;127.0.0.1#5335"
       DNSSEC: "false" # unbound will perform DNSSEC
     volumes:
       - './volumes/pihole:/etc/pihole'
