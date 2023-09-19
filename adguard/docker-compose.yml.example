@@ -21,22 +21,22 @@ services:
       #- 68:68/udp
 
       # HTTP (main)
-      - 80:80/tcp
+      - 9000:80/tcp
 
       # HTTPS, DNS-over-HTTPS (incl. HTTP/3), DNSCrypt (main)
-      - 443:443/tcp
-      - 443:443/udp
+      #- 443:443/tcp
+      #- 443:443/udp
 
       # HTTP(S) (alt, incl. HTTP/3)
-      - 3000:3000/tcp
+      #- 3000:3000/tcp
 
       # DNSCrypt (alt)
-      - 5443:5443/tcp
-      - 5443:5443/udp
+      #- 5443:5443/tcp
+      #- 5443:5443/udp
 
       # HTTP (pprof)
-      - 6060:6060/tcp
+      #- 6060:6060/tcp
     volumes:
-    - './volumes/conf:/opt/adguardhome/conf'
-    - './volumes/work:/opt/adguardhome/work'
+      - "./volumes/conf:/opt/adguardhome/conf"
+      - "./volumes/work:/opt/adguardhome/work"
     restart: unless-stopped
