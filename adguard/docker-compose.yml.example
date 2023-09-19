@@ -21,7 +21,7 @@ services:
       #- 68:68/udp
 
       # HTTP (main)
-      - 9000:80/tcp
+      - 80:80/tcp
 
       # HTTPS, DNS-over-HTTPS (incl. HTTP/3), DNSCrypt (main)
       #- 443:443/tcp
