@@ -1,0 +1,7 @@
+dns.home {
+  tls /run/secrets/cert_file /run/secrets/key_file {
+    protocols tls1.3
+  }
+
+  reverse_proxy dns:80
+}

@@ -1,0 +1,31 @@
+secrets:
+  cert_file:
+    file: ./secrets/dns.home.crt
+  key_file:
+    file: ./secrets/dns.home.key
+
+services:
+  caddy:
+    container_name: caddy
+    image: caddy:2.9-alpine
+    depends_on:
+      - dns
+    secrets:
+      - cert_file
+      - key_file
+    volumes:
+      - ./volumes/caddy/caddy_config:/config
+      - ./volumes/caddy/caddy_data:/data
+      - ./volumes/caddy/conf:/etc/caddy
+      - ./volumes/caddy/site:/srv
+    ports:
+      - ${IP}:443:443/tcp
+    restart: unless-stopped
+
+  dns:
+    container_name: dns
+    image: adguard/adguardhome
+    volumes:
+      - ./volumes/adguard/conf:/opt/adguardhome/conf
+      - ./volumes/adguard/work:/opt/adguardhome/work
+    restart: unless-stopped

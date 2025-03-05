@@ -1,6 +1,0 @@
-.env
-docker-compose.yml
-volumes/certs/*
-!volumes/certs/*.example
-volumes/dnsmasq
-volumes/pihole
