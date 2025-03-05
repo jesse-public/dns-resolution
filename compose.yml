@@ -26,6 +26,6 @@ services:
     container_name: dns
     image: adguard/adguardhome
     volumes:
-      - ./volumes/adguard/conf:/opt/adguardhome/conf
-      - ./volumes/adguard/work:/opt/adguardhome/work
+      - ./volumes/dns/conf:/opt/adguardhome/conf
+      - ./volumes/dns/work:/opt/adguardhome/work
     restart: unless-stopped
