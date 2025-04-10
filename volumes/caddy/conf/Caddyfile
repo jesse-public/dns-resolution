@@ -1,7 +1,4 @@
 dns.home {
-  # Disable automatic HTTPS to prevent Let's Encrypt from being used
-  auto_https off
-
   tls /run/secrets/cert_file /run/secrets/key_file {
     protocols tls1.3
   }

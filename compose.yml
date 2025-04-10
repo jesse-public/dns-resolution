@@ -1,31 +1,54 @@
 secrets:
-  cert_file:
-    file: ./secrets/dns.home.crt
+  #cert_file:
+  #  file: ./secrets/dns.home.crt
+  full_chain_file:
+    file: ./secrets/fullchain.pem
   key_file:
     file: ./secrets/dns.home.key
 
 services:
-  caddy:
-    container_name: caddy
-    image: caddy:2.9-alpine
-    depends_on:
-      - dns
-    secrets:
-      - cert_file
-      - key_file
-    volumes:
-      - ./volumes/caddy/caddy_config:/config
-      - ./volumes/caddy/caddy_data:/data
-      - ./volumes/caddy/conf:/etc/caddy
-      - ./volumes/caddy/site:/srv
-    ports:
-      - ${IP}:443:443/tcp
-    restart: unless-stopped
+  #caddy:
+  #  container_name: caddy
+  #  image: caddy:2.9-alpine
+  #  depends_on:
+  #    - dns
+  #  secrets:
+  #    - cert_file
+  #    - key_file
+  #  volumes:
+  #    - ./volumes/caddy/caddy_config:/config
+  #    - ./volumes/caddy/caddy_data:/data
+  #    - ./volumes/caddy/conf:/etc/caddy
+  #    - ./volumes/caddy/site:/srv
+  #  ports:
+  #    - ${IP}:8443:443/tcp
+  #  restart: unless-stopped
 
   dns:
+    # build custom image containing ca.crt
+    build: ./adguard
     container_name: dns
-    image: adguard/adguardhome
+    # image: adguard/adguardhome
+    secrets:
+      - full_chain_file
+      - key_file
     volumes:
       - ./volumes/dns/conf:/opt/adguardhome/conf
       - ./volumes/dns/work:/opt/adguardhome/work
+    ports:
+      # HTTPS
+      - ${IP}:443:443/tcp
+      # HTTP
+      - ${IP}:80:80/tcp
+      # DNS
+      - ${IP}:53:53/tcp
+      - ${IP}:53:53/udp
+      # DNS over HTTPS
+      - ${IP}:443:443/udp
+      # DNS over TLS
+      # - 853:853/tcp
+      # DNS over Quic
+      # - 853:853/udp
+      # DNSCrypt
+      - ${IP}:5443:5443
     restart: unless-stopped
